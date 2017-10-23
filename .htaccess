@@ -37,6 +37,12 @@ RewriteRule . /index.php [L]
 	<IfModule mod_headers.c>
 	  Header set X-XSS-Protection "1; mode=block"
 	</IfModule>
+	
+	# Security related. Prevenir que la página pueda ser abierta en un frame. Prevenir ataques de clickjacking.
+	# Read more: https://www.owasp.org/index.php/List_of_useful_HTTP_headers
+	<IfModule mod_headers.c>
+	Header always append X-Frame-Options SAMEORIGIN
+	</IfModule>
 
 	# Block Common Malicious Bot Queries
 	<IfModule mod_rewrite.c>
